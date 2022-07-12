@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "yarn build && firebase deploy --except functions"
   },
   "dependencies": {
     "firebase": "^9.9.0",
