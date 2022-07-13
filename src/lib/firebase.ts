@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { omit } from 'lodash-es';
 import type { Timestamp, DocumentData, QueryDocumentSnapshot, SnapshotOptions } from 'firebase/firestore';
+import type { User } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -25,4 +26,4 @@ export const dataConverter = {
   },
 };
 
-export type { Timestamp };
+export type { Timestamp, User };
