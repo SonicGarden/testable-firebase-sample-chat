@@ -1,4 +1,4 @@
-import type { Timestamp } from '@/lib/firebase';
+import type { Timestamp, WithId } from '@/lib/firebase';
 
 export type User = {
   createdAt: Timestamp;
@@ -6,6 +6,4 @@ export type User = {
   photoUrl: string;
 };
 
-export type UserWithId = User & {
-  id: string;
-};
+export type UserWithId = WithId<User>;

@@ -1,4 +1,4 @@
-import type { Timestamp } from '@/lib/firebase';
+import type { Timestamp, WithId } from '@/lib/firebase';
 
 export type Message = {
   createdAt: Timestamp;
@@ -6,6 +6,4 @@ export type Message = {
   senderId: string;
 };
 
-export type MessageWithId = Message & {
-  id: string;
-};
+export type MessageWithId = WithId<Message>;
