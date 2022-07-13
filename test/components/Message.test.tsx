@@ -5,7 +5,7 @@ import { userFactory } from '@/../test/factories/user';
 import { messageFactory } from '@/../test/factories/message';
 import { Timestamp } from 'firebase/firestore';
 
-describe('Message.tsx', () => {
+describe('Message', () => {
   afterEach(() => cleanup());
 
   const sender = userFactory.build({
