@@ -15,6 +15,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "@firebase/rules-unit-testing": "^2.0.3",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
@@ -23,6 +24,7 @@
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.30.1",
+    "fishery": "^2.2.2",
     "jsdom": "^20.0.0",
     "prettier": "^2.7.1",
     "typescript": "^4.6.3",
