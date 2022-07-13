@@ -18,6 +18,8 @@
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^2.0.3",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/react-hooks": "^8.0.1",
     "@types/lodash-es": "^4.17.6",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
