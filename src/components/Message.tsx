@@ -2,13 +2,7 @@ import { MessageWithId } from '@/types/message';
 import { UserWithId } from '@/types/user';
 import { format } from 'date-fns';
 
-type Props = {
-  message: MessageWithId;
-  sender: UserWithId;
-};
-export const Message = (props: Props) => {
-  const { message, sender } = props;
-
+export const Message = ({ message, sender }: { message: MessageWithId; sender: UserWithId }) => {
   return (
     <div>
       <div>
