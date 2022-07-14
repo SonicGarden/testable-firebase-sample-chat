@@ -22,7 +22,7 @@ initializeApp(firebaseConfig);
 
 export type WithId<T> = T & { id: string };
 
-export const getConverter = <T>(): FirestoreDataConverter<T> => ({
+export const getConverter = <T>(): FirestoreDataConverter<WithId<T>> => ({
   toFirestore: (data: WithId<T>): DocumentData => {
     return omit(data, ['id']);
   },
