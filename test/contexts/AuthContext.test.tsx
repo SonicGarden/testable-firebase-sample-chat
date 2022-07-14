@@ -13,7 +13,7 @@ const TestComponent = () => (
   </AuthProvider>
 );
 
-describe('App', () => {
+describe('AuthContext', () => {
   afterEach(() => {
     vi.resetAllMocks();
     cleanup();
