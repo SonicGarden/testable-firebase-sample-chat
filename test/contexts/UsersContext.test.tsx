@@ -1,4 +1,3 @@
-import { describe, it, expect, afterEach, vi } from 'vitest';
 import { renderHook } from '@testing-library/react-hooks';
 import { useUsers, UsersProvider } from '@/contexts/UsersContext';
 import { ReactNode } from 'react';
