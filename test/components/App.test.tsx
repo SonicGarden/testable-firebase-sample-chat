@@ -1,4 +1,3 @@
-import { describe, it, expect, afterEach } from 'vitest';
 import { render, cleanup, screen } from '@testing-library/react';
 import { App } from '@/components/App';
 
