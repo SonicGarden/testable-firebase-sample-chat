@@ -1,4 +1,3 @@
-import { describe, it, beforeEach } from 'vitest';
 import { assertSucceeds, assertFails, RulesTestEnvironment } from '@firebase/rules-unit-testing';
 import firebase from 'firebase/compat/app';
 import { getTestEnv, setCollection } from '@/../test/rules/firestore/utils';

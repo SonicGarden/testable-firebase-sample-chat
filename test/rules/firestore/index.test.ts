@@ -1,4 +1,3 @@
-import { describe, beforeAll, afterAll, afterEach } from 'vitest';
 import { initializeTestEnvironment, getTestEnv } from './utils';
 import { usersTest } from '@/../test/rules/firestore/collections/users';
 import { messagesTest } from '@/../test/rules/firestore/collections/messages';
