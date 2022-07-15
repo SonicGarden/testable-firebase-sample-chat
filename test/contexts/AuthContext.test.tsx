@@ -1,4 +1,3 @@
-import { describe, it, expect, afterEach, vi } from 'vitest';
 import { render, cleanup, screen, waitFor } from '@testing-library/react';
 import { useAuth, AuthProvider } from '@/contexts/AuthContext';
 
