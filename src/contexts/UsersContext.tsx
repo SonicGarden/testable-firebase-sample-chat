@@ -1,7 +1,8 @@
 import { ReactNode, createContext, useContext, useMemo } from 'react';
+import { keyBy } from 'lodash-es';
 import { UserWithId, User } from '@/types/user';
 import { useCollectionData } from '@/hooks/useCollectionData';
-import { keyBy } from 'lodash-es';
+import { usersRef } from '@/lib/user';
 
 type UsersContextValue = {
   users: UserWithId[];
@@ -12,7 +13,7 @@ type UsersContextValue = {
 export const UsersContext = createContext<UsersContextValue>({ users: [], usersById: {}, loading: true });
 
 export const UsersProvider = ({ children }: { children: ReactNode }) => {
-  const [users, loading] = useCollectionData<User>('users');
+  const [users, loading] = useCollectionData<User>(usersRef);
   const usersById = useMemo(() => keyBy(users, 'id'), [users]);
 
   return <UsersContext.Provider value={{ users: users || [], usersById, loading }}>{children}</UsersContext.Provider>;
