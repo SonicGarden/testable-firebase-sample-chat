@@ -1,40 +1,54 @@
 import { render, cleanup, screen } from '@testing-library/react';
-import { Messages } from '@/components/Messages';
-import * as useCollectionData from '@/hooks/useCollectionData';
-import * as UsersContext from '@/contexts/UsersContext';
+import { userFactory } from '@/../test/factories/user';
+import { messageFactory } from '@/../test/factories/message';
 
-describe('Messages', () => {
+const useCollectionDataMock = vi.fn();
+vi.mock('@/hooks/useCollectionData', () => {
+  return {
+    useCollectionData: useCollectionDataMock,
+  };
+});
+const useUsersMock = vi.fn();
+vi.mock('@/contexts/UsersContext', () => {
+  return {
+    useUsers: useUsersMock,
+  };
+});
+
+describe('Messages', async () => {
+  const { Messages } = await import('@/components/Messages');
+
   afterEach(() => {
     vi.resetAllMocks();
     cleanup();
   });
 
-  it('ローディング中の場合、ローディング画面が表示される', () => {
-    vi.spyOn(useCollectionData, 'useCollectionData').mockReturnValue([[], true, undefined, undefined]);
+  it('ローディング中の場合、ローディング画面が表示される', async () => {
+    useCollectionDataMock.mockReturnValue([[], true, undefined, undefined]);
     render(<Messages />);
     expect(screen.getByText('loading...')).toBeTruthy();
   });
 
   it('ローディング完了後、メッセージ一覧が表示される', async () => {
-    const { userFactory } = await import('@/../test/factories/user');
-    const user = userFactory.build({
-      id: 'test-user-uid',
-      name: 'てすたろう',
-    });
-    const { messageFactory } = await import('@/../test/factories/message');
     const message = messageFactory.build({
       id: 'test-message-id',
       content: 'テストメッセージ',
       senderId: 'test-user-uid',
     });
-    vi.spyOn(useCollectionData, 'useCollectionData').mockReturnValue([[message], false, undefined, undefined]);
-    vi.spyOn(UsersContext, 'useUsers').mockReturnValue({
-      users: [user],
-      usersById: { [user.id]: user },
-      loading: false,
+    const message2 = messageFactory.build({
+      id: 'test-message2-id',
+      content: 'テストメッセージ2',
+      senderId: 'test-user-uid',
     });
+    useCollectionDataMock.mockReturnValue([[message, message2], false, undefined, undefined]);
+    const user = userFactory.build({
+      id: 'test-user-uid',
+      name: 'てすたろう',
+    });
+    useUsersMock.mockReturnValue({ users: [user], usersById: { [user.id]: user }, loading: false });
+
     render(<Messages />);
     expect(screen.getByText('テストメッセージ')).toBeTruthy();
-    expect(screen.getByText('てすたろう')).toBeTruthy();
+    expect(screen.getByText('テストメッセージ2')).toBeTruthy();
   });
 });
