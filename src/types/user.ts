@@ -1,9 +1,9 @@
 import type { Timestamp, WithId } from '@/lib/firebase';
 
-export type User = {
+export type UserDocumentData = {
   createdAt: Timestamp;
   name: string;
   photoUrl: string;
 };
 
-export type UserWithId = WithId<User>;
+export type User = WithId<UserDocumentData>;
