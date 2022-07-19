@@ -1,11 +1,14 @@
-import { useUsers } from '@/contexts/UsersContext';
-import { Message as MessageType } from '@/types/message';
 import { format } from 'date-fns';
+import { useUsers } from '@/contexts/UsersContext';
+import { LoadingScreen } from './LoadingScreen';
+import { Message as MessageType } from '@/types/message';
 
 export const Message = ({ message }: { message: MessageType }) => {
   const { usersById, loading } = useUsers();
   const sender = usersById[message.senderId];
-  if (loading) return <div>loading...</div>;
+
+  if (loading) return <LoadingScreen />;
+
   return (
     <div>
       <div>
