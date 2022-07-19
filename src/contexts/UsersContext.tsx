@@ -1,12 +1,12 @@
 import { ReactNode, createContext, useContext, useMemo } from 'react';
 import { keyBy } from 'lodash-es';
-import { UserWithId, User } from '@/types/user';
+import { User } from '@/types/user';
 import { useCollectionData } from '@/hooks/useCollectionData';
 import { usersRef } from '@/lib/user';
 
 type UsersContextValue = {
-  users: UserWithId[];
-  usersById: { [id: string]: UserWithId };
+  users: User[];
+  usersById: { [id: string]: User };
   loading: boolean;
 };
 
