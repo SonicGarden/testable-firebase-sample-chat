@@ -1,8 +1,8 @@
 import { useUsers } from '@/contexts/UsersContext';
-import { MessageWithId } from '@/types/message';
+import { Message as MessageType } from '@/types/message';
 import { format } from 'date-fns';
 
-export const Message = ({ message }: { message: MessageWithId }) => {
+export const Message = ({ message }: { message: MessageType }) => {
   const { usersById, loading } = useUsers();
   const sender = usersById[message.senderId];
   if (loading) return <div>loading...</div>;
