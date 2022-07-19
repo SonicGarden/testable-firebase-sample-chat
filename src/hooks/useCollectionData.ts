@@ -1,6 +1,5 @@
-import { getFirestore, collection } from 'firebase/firestore';
+import { Query } from 'firebase/firestore';
 import { useCollectionData as _useCollectionData } from 'react-firebase-hooks/firestore';
-import { getConverter } from '@/lib/firebase';
+import { WithId } from '@/lib/firebase';
 
-export const useCollectionData = <T>(collectionName: string) =>
-  _useCollectionData(collection(getFirestore(), collectionName).withConverter(getConverter<T>()));
+export const useCollectionData = <T>(query: Query<WithId<T>>) => _useCollectionData(query);
