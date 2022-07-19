@@ -1,9 +1,9 @@
 import type { Timestamp, WithId } from '@/lib/firebase';
 
-export type Message = {
+export type MessageDocumentData = {
   createdAt: Timestamp;
   content: string;
   senderId: string;
 };
 
-export type MessageWithId = WithId<Message>;
+export type Message = WithId<MessageDocumentData>;
