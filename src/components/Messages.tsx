@@ -1,12 +1,20 @@
 import { useCollectionData } from '@/hooks/useCollectionData';
 import { messagesRef } from '@/lib/message';
-import { Message } from '@/types/message';
+import { Message as MessageType } from '@/types/message';
 import { LoadingScreen } from '@/components/LoadingScreen';
+import { Message } from '@/components/Message';
 
 export const Messages = () => {
-  const [messages, loading] = useCollectionData<Message>(messagesRef);
+  const [messages, loading] = useCollectionData<MessageType>(messagesRef);
+  console.log(messages, loading);
 
   if (loading) return <LoadingScreen />;
 
-  return <div>Messages</div>;
+  return (
+    <div>
+      {messages?.map((message) => (
+        <Message key={message.id} message={message} />
+      ))}
+    </div>
+  );
 };
