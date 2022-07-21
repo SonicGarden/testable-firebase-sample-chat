@@ -29,8 +29,7 @@ export const getConverter = <T>(): FirestoreDataConverter<WithId<T>> => ({
     return omit(data, ['id']);
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<T>, options: SnapshotOptions): WithId<T> => {
-    const { id, data } = snapshot;
-    return { id, ...data(options) };
+    return { id: snapshot.id, ...snapshot.data(options) };
   },
 });
 
