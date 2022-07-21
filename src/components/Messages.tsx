@@ -6,7 +6,6 @@ import { Message } from '@/components/Message';
 
 export const Messages = () => {
   const [messages, loading] = useCollectionData<MessageType>(messagesRef);
-  console.log(messages, loading);
 
   if (loading) return <LoadingScreen />;
 
