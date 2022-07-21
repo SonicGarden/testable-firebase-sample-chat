@@ -1,4 +1,4 @@
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, screen, waitFor } from '@testing-library/react';
 import * as message from '@/lib/message';
 
 vi.mock('@/contexts/AuthContext', () => {
@@ -15,26 +15,35 @@ describe('MessageForm', async () => {
     cleanup();
   });
 
-  it('入力が空欄の時に送信ボタンを押してもaddMessageは呼ばれない', () => {
-    const spy = vi.spyOn(message, 'addMessage');
-    const { container } = render(<MessageForm />);
+  it('入力が空欄の時に送信ボタンを押せない', () => {
+    render(<MessageForm />);
 
-    const button = container.querySelector('button') as HTMLButtonElement;
-    fireEvent.click(button);
-
-    expect(spy).not.toBeCalled();
-  })
+    const button = screen.getByRole<HTMLButtonElement>('button');
+    expect(button.disabled).toBeTruthy();
+  });
 
   it('送信ボタンを押したときにaddMessageが呼ばれる', async () => {
     const spy = vi.spyOn(message, 'addMessage');
-    const { container } = render(<MessageForm />);
-  
-    const input = container.querySelector('input') as HTMLElement;
+    render(<MessageForm />);
+
+    const input = screen.getByLabelText<HTMLInputElement>('content-input');
     fireEvent.change(input, { target: { value: 'dummy-content' } });
 
-    const button = container.querySelector('button') as HTMLButtonElement;
+    const button = screen.getByRole<HTMLButtonElement>('button');
     fireEvent.click(button);
 
     expect(spy).toBeCalled();
+  });
+
+  it('送信完了後、inputが空欄になる', async () => {
+    render(<MessageForm />);
+
+    const input = screen.getByLabelText<HTMLInputElement>('content-input');
+    fireEvent.change(input, { target: { value: 'dummy-content' } });
+
+    const button = screen.getByRole<HTMLButtonElement>('button');
+    fireEvent.click(button);
+
+    await waitFor(() => expect(input.value).toBe(''));
   });
 });

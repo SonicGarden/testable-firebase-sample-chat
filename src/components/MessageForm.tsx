@@ -1,26 +1,31 @@
-import { useRef } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { serverTimestamp } from '@/lib/firebase';
 import { addMessage } from '@/lib/message';
 import { useAuth } from '@/contexts/AuthContext';
 
 export const MessageForm = () => {
   const { currentUser } = useAuth();
-  const ref = useRef<HTMLInputElement>(null);
+  const [content, setContent] = useState<string>('');
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setContent(event.currentTarget.value);
+  };
 
   const handleClick = async () => {
-    if (!ref.current?.value || !currentUser) return;
+    if (!content || !currentUser) return;
 
     await addMessage({
-      content: ref.current.value,
+      content,
       senderId: currentUser.uid,
       createdAt: serverTimestamp(),
     });
+    setContent('');
   };
 
   return (
     <>
-      <input type="text" ref={ref} />
-      <button onClick={handleClick}>
+      <input aria-label="content-input" type="text" value={content} onChange={handleChange} />
+      <button onClick={handleClick} disabled={!content}>
         送信
       </button>
     </>
