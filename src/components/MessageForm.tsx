@@ -7,8 +7,8 @@ export const MessageForm = () => {
   const { currentUser } = useAuth();
   const ref = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = async () => {
-    if (!ref.current || !currentUser) return;
+  const handleClick = async () => {
+    if (!ref.current?.value || !currentUser) return;
 
     await addMessage({
       content: ref.current.value,
@@ -18,11 +18,11 @@ export const MessageForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <>
       <input type="text" ref={ref} />
-      <button onSubmit={handleSubmit} disabled={!ref.current?.value}>
+      <button onClick={handleClick}>
         送信
       </button>
-    </form>
+    </>
   );
 };
