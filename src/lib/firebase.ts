@@ -37,4 +37,3 @@ const serverTimestamp = _serverTimestamp as unknown as () => Timestamp;
 
 export type { User, WithId };
 export { Timestamp, getConverter, serverTimestamp };
-
