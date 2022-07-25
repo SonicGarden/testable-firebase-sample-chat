@@ -12,7 +12,7 @@ export const Message = ({ message }: { message: MessageType }) => {
   return (
     <div>
       <div>
-        <img src={sender?.photoUrl} />
+        <img src={sender?.photoUrl || '/noname.png'} />
         <span>{sender?.name || '名無しさん'}</span>
         <span>{format(message.createdAt.toDate(), 'yyyy-MM-dd HH:mm')}</span>
       </div>
