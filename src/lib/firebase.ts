@@ -1,11 +1,13 @@
 import { initializeApp } from 'firebase/app';
 import { omit } from 'lodash-es';
-import type {
+import {
   Timestamp,
   DocumentData,
   QueryDocumentSnapshot,
   SnapshotOptions,
   FirestoreDataConverter,
+  PartialWithFieldValue,
+  serverTimestamp as _serverTimestamp,
 } from 'firebase/firestore';
 import type { User } from 'firebase/auth';
 
@@ -20,16 +22,18 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-export type WithId<T> = T & { id: string };
+type WithId<T> = T & { id: string };
 
-export const getConverter = <T>(): FirestoreDataConverter<WithId<T>> => ({
-  toFirestore: (data: WithId<T>): DocumentData => {
+const getConverter = <T>(): FirestoreDataConverter<WithId<T>> => ({
+  toFirestore: (data: PartialWithFieldValue<WithId<T>>): DocumentData => {
     return omit(data, ['id']);
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<T>, options: SnapshotOptions): WithId<T> => {
-    const { id, data } = snapshot;
-    return { id, ...data(options) };
+    return { id: snapshot.id, ...snapshot.data(options) };
   },
 });
 
-export type { Timestamp, User };
+const serverTimestamp = _serverTimestamp as unknown as () => Timestamp;
+
+export type { User, WithId };
+export { Timestamp, getConverter, serverTimestamp };
