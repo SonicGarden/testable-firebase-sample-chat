@@ -1,11 +1,10 @@
 import { useCollectionData } from '@/hooks/useCollectionData';
-import { messagesRef } from '@/lib/message';
-import { Message as MessageType } from '@/types/message';
+import { messagesQuery } from '@/lib/message';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { Message } from '@/components/Message';
 
 export const Messages = () => {
-  const [messages, loading] = useCollectionData<MessageType>(messagesRef);
+  const [messages, loading] = useCollectionData(messagesQuery);
 
   if (loading) return <LoadingScreen />;
 
