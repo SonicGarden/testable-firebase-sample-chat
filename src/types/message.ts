@@ -2,7 +2,8 @@ import type { Timestamp, WithId } from '@/lib/firebase';
 
 export type MessageDocumentData = {
   createdAt: Timestamp;
-  content: string;
+  content: string | null;
+  imagePath: string | null;
   senderId: string;
 };
 
