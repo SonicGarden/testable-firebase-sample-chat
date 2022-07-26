@@ -7,8 +7,12 @@ export const MessageForm = () => {
   const { currentUser } = useAuth();
   const [content, setContent] = useState<string>('');
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeConetnt = (event: ChangeEvent<HTMLInputElement>) => {
     setContent(event.currentTarget.value);
+  };
+
+  const handleChangeImage = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event.currentTarget.value);
   };
 
   const handleClick = async () => {
@@ -24,7 +28,8 @@ export const MessageForm = () => {
 
   return (
     <>
-      <input aria-label="content-input" type="text" value={content} onChange={handleChange} />
+      <input aria-label='content-input' type='text' value={content} onChange={handleChangeConetnt} />
+      <input aria-label='image-input' type='file' accept='image/*' onChange={handleChangeImage} />
       <button onClick={handleClick} disabled={!content}>
         送信
       </button>
