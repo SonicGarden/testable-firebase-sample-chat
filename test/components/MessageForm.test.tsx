@@ -46,4 +46,10 @@ describe('MessageForm', async () => {
 
     await waitFor(() => expect(input.value).toBe(''));
   });
+
+  it('画像インプットが表示される', () => {
+    render(<MessageForm />);
+
+    expect(screen.getByLabelText('image-input')).toBeDefined();
+  });
 });
