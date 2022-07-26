@@ -27,6 +27,12 @@ describe('MessageForm', async () => {
     expect(screen.getByText('送信')).toBeDefined();
   });
 
+  it('画像入力欄が表示される', () => {
+    render(<MessageForm />);
+
+    expect(screen.getByLabelText('image-input')).toBeDefined();
+  });
+
   it('入力が空欄の時に送信ボタンを押せない', () => {
     render(<MessageForm />);
 
@@ -57,11 +63,5 @@ describe('MessageForm', async () => {
     fireEvent.click(button);
 
     await waitFor(() => expect(input.value).toBe(''));
-  });
-
-  it('画像インプットが表示される', () => {
-    render(<MessageForm />);
-
-    expect(screen.getByLabelText('image-input')).toBeDefined();
   });
 });
