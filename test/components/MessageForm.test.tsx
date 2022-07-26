@@ -15,10 +15,22 @@ describe('MessageForm', async () => {
     cleanup();
   });
 
+  it('メッセージ入力欄が表示される', () => {
+    render(<MessageForm />);
+
+    expect(screen.getByLabelText('content-input')).toBeDefined();
+  });
+
+  it('送信ボタンが表示される', () => {
+    render(<MessageForm />);
+
+    expect(screen.getByText('送信')).toBeDefined();
+  });
+
   it('入力が空欄の時に送信ボタンを押せない', () => {
     render(<MessageForm />);
 
-    const button = screen.getByRole<HTMLButtonElement>('button');
+    const button = screen.getByText<HTMLButtonElement>('送信');
     expect(button.disabled).toBeTruthy();
   });
 
@@ -29,7 +41,7 @@ describe('MessageForm', async () => {
     const input = screen.getByLabelText<HTMLInputElement>('content-input');
     fireEvent.change(input, { target: { value: 'dummy-content' } });
 
-    const button = screen.getByRole<HTMLButtonElement>('button');
+    const button = screen.getByText<HTMLButtonElement>('送信');
     fireEvent.click(button);
 
     expect(spy).toBeCalled();
@@ -41,7 +53,7 @@ describe('MessageForm', async () => {
     const input = screen.getByLabelText<HTMLInputElement>('content-input');
     fireEvent.change(input, { target: { value: 'dummy-content' } });
 
-    const button = screen.getByRole<HTMLButtonElement>('button');
+    const button = screen.getByText<HTMLButtonElement>('送信');
     fireEvent.click(button);
 
     await waitFor(() => expect(input.value).toBe(''));
