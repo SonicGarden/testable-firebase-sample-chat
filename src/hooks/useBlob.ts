@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { ref, getStorage, getBlob } from 'firebase/storage';
 
-export const useBlob = (url: string | null) => {
+export const useBlob = (path: string | null) => {
   const [blob, setBlob] = useState<Blob>();
 
   useEffect(() => {
-    url && getBlob(ref(getStorage(), url)).then(setBlob);
-  }, [url]);
+    path && getBlob(ref(getStorage(), path)).then(setBlob);
+  }, [path]);
 
   return blob;
 };
