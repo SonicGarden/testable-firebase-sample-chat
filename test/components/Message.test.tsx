@@ -6,7 +6,7 @@ import { Timestamp } from 'firebase/firestore';
 const sender = userFactory.build({
   id: 'user-id',
   name: 'テストユーザー',
-  photoUrl: 'dummy-url',
+  photoUrl: 'user-photo-url',
 });
 vi.mock('@/context/UsersContext', () => {
   return {
@@ -45,7 +45,7 @@ describe('Message', async () => {
 
     it('アイコン画像が表示される', () => {
       render(<Message message={message} />);
-      waitFor(() => expect(screen.getByRole('img').getAttribute('src')).toBe('dummy-url'));
+      waitFor(() => expect(screen.getByRole('img').getAttribute('src')).toBe('user-photo-url'));
     });
 
     it('送信者の名前が表示される', () => {
@@ -78,7 +78,7 @@ describe('Message', async () => {
     });
 
     beforeEach(() => {
-      useBlobUrlMock.mockReturnValue('image-url');
+      useBlobUrlMock.mockReturnValue('message-image-url');
     });
 
     it('loading中はloadingメッセージが表示される', () => {
@@ -88,7 +88,7 @@ describe('Message', async () => {
 
     it('アイコン画像が表示される', () => {
       render(<Message message={message} />);
-      waitFor(() => expect(screen.getByRole('img').getAttribute('src')).toBe('dummy-url'));
+      waitFor(() => expect(screen.getByRole('img')).toHaveAttribute('src', 'user-photo-url'));
     });
 
     it('送信者の名前が表示される', () => {
@@ -108,7 +108,7 @@ describe('Message', async () => {
 
     it('画像が表示される', () => {
       render(<Message message={message} />);
-      waitFor(() => expect(screen.getByText('message-image').getAttribute('src')).toBe('image-url'));
+      waitFor(() => expect(screen.getByText('message-image')).toHaveAttribute('src', 'message-image-url'));
     });
   });
 });
