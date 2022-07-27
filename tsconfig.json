@@ -22,6 +22,6 @@
     "types": ["vitest/globals"],
     "noUncheckedIndexedAccess": true
   },
-  "include": ["src", "test"],
+  "include": ["src", "test", "./vitest.setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
