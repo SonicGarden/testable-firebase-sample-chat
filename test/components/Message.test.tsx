@@ -1,22 +1,28 @@
 import { render, cleanup, screen, waitFor } from '@testing-library/react';
-import { Message } from '@/components/Message';
 import { userFactory } from '@/../test/factories/user';
 import { messageFactory } from '@/../test/factories/message';
 import { Timestamp } from 'firebase/firestore';
 
-describe('Message', () => {
+const sender = userFactory.build({
+  id: 'user-id',
+  name: 'テストユーザー',
+  photoUrl: 'user-photo-url',
+});
+vi.mock('@/context/UsersContext', () => {
+  return {
+    useUsers: { usersById: { 'user-id': [sender] } },
+  };
+});
+
+describe('Message', async () => {
+  const { Message } = await import('@/components/Message');
+
   afterEach(() => cleanup());
 
   vi.mock('@/context/UsersContext', () => {
     return {
       useUsers: { usersById: { 'user-id': [sender] } },
     };
-  });
-
-  const sender = userFactory.build({
-    id: 'user-id',
-    name: 'テストユーザー',
-    photoUrl: 'dummy-url',
   });
 
   const message = messageFactory.build({
@@ -28,11 +34,11 @@ describe('Message', () => {
   it('loading中はloadingメッセージが表示される', () => {
     render(<Message message={message} />);
     expect(screen.getByText('loading...')).toBeTruthy();
-  })
+  });
 
   it('アイコン画像が表示される', () => {
     render(<Message message={message} />);
-    waitFor(() => expect(screen.getByRole('img').getAttribute('src')).toBe('dummy-url'));
+    waitFor(() => expect(screen.getByRole('img').getAttribute('src')).toBe('user-photo-url'));
   });
 
   it('送信者の名前が表示される', () => {
