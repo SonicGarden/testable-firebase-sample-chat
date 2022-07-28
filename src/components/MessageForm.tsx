@@ -1,6 +1,5 @@
 import { useState, useRef, ChangeEvent } from 'react';
-import { serverTimestamp } from '@/lib/firebase';
-import { newMessageRef, setMessage, uploadMessageImage } from '@/lib/message';
+import { addMessage } from '@/lib/message';
 import { useAuth } from '@/contexts/AuthContext';
 
 export const MessageForm = () => {
@@ -15,16 +14,8 @@ export const MessageForm = () => {
   const handleClick = async () => {
     if (!content || !currentUser) return;
 
-    const [image] = imageInput.current?.files || [];
-    const messageRef = newMessageRef();
-    const snapshot = image && (await uploadMessageImage(messageRef.id, currentUser.uid, image));
-    const { ref: storageRef } = snapshot || {};
-    await setMessage(messageRef, {
-      content,
-      imagePath: storageRef?.fullPath || null,
-      senderId: currentUser.uid,
-      createdAt: serverTimestamp(),
-    });
+    const [image = null] = imageInput.current?.files || [];
+    await addMessage(content, image, currentUser.uid);
     setContent('');
     if (imageInput.current) imageInput.current.value = '';
   };

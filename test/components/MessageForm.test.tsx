@@ -7,14 +7,10 @@ vi.mock('@/contexts/AuthContext', () => {
   };
 });
 
-const newMessageRefMock = vi.fn().mockReturnValue({ id: 'new-message-id' });
-const uploadMessageImageMock = vi.fn().mockResolvedValue({});
-const setMessageMock = vi.fn().mockResolvedValue({});
+const addMessageMock = vi.fn().mockResolvedValue({});
 vi.mock('@/lib/message', () => {
   return {
-    newMessageRef: newMessageRefMock,
-    uploadMessageImage: uploadMessageImageMock,
-    setMessage: setMessageMock,
+    addMessage: addMessageMock,
   };
 });
 
@@ -58,7 +54,7 @@ describe('MessageForm', async () => {
 
     screen.getByText<HTMLButtonElement>('送信').click();
 
-    expect(setMessageMock).toBeCalled();
+    expect(addMessageMock).toBeCalledWith('てすとだよ', null, 'test-user-uid');
   });
 
   it('送信完了後、メッセージ入力欄がクリアされる', async () => {
@@ -74,7 +70,7 @@ describe('MessageForm', async () => {
     await waitFor(() => expect(input).toHaveValue(''));
   });
 
-  it('画像添付の場合は画像アップロード処理が行われる', async () => {
+  it('画像添付の場合は画像も指定してメッセージ投稿処理が呼ばれる', async () => {
     render(<MessageForm />);
 
     const contentInput = screen.getByLabelText<HTMLInputElement>('content-input');
@@ -86,7 +82,7 @@ describe('MessageForm', async () => {
 
     screen.getByText<HTMLButtonElement>('送信').click();
 
-    expect(uploadMessageImageMock).toBeCalled();
+    expect(addMessageMock).toBeCalledWith('てすとだよ', file, 'test-user-uid');
   });
 
   it('送信完了後、メッセージ、画像入力欄がクリアされる', async () => {
