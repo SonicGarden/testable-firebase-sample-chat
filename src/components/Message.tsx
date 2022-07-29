@@ -2,12 +2,12 @@ import { format } from 'date-fns';
 import { useUsers } from '@/contexts/UsersContext';
 import { LoadingScreen } from './LoadingScreen';
 import { Message as MessageType } from '@/types/message';
-import { useBlobUrl } from '@/hooks/useBlobUrl';
+import { useBlob } from '@/hooks/useBlob';
 
 export const Message = ({ message }: { message: MessageType }) => {
   const { usersById, loading } = useUsers();
   const sender = usersById[message.senderId];
-  const blobUrl = useBlobUrl(message.imagePath);
+  const { url } = useBlob(message.imagePath);
 
   if (loading) return <LoadingScreen />;
 
@@ -19,7 +19,7 @@ export const Message = ({ message }: { message: MessageType }) => {
         <span>{format(message.createdAt.toDate(), 'yyyy-MM-dd HH:mm')}</span>
       </div>
       <p>{message.content}</p>
-      {blobUrl && <img alt='message-image' src={blobUrl} />}
+      {url && <img alt='message-image' src={url} />}
     </div>
   );
 };

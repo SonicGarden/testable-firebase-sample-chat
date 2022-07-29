@@ -14,10 +14,10 @@ vi.mock('@/context/UsersContext', () => {
   };
 });
 
-const useBlobUrlMock = vi.fn();
-vi.mock('@/hooks/useBlobUrl', () => {
+const useBlobMock = vi.fn();
+vi.mock('@/hooks/useBlob', () => {
   return {
-    useBlobUrl: useBlobUrlMock,
+    useBlob: useBlobMock,
   };
 });
 
@@ -35,7 +35,7 @@ describe('Message', async () => {
     });
 
     beforeEach(() => {
-      useBlobUrlMock.mockReturnValue(undefined);
+      useBlobMock.mockReturnValue({});
     });
 
     it('loading中はloadingメッセージが表示される', () => {
@@ -78,7 +78,7 @@ describe('Message', async () => {
     });
 
     beforeEach(() => {
-      useBlobUrlMock.mockReturnValue('message-image-url');
+      useBlobMock.mockReturnValue({ url: 'message-image-url' });
     });
 
     it('loading中はloadingメッセージが表示される', () => {
