@@ -1,6 +1,6 @@
 import { assertSucceeds, assertFails, RulesTestEnvironment } from '@firebase/rules-unit-testing';
 import firebase from 'firebase/compat/app';
-import { getTestEnv, setCollection } from '@/../test/rules/firestore/utils';
+import { getTestEnv, setCollection } from '@/../test/utils';
 import { userFactory } from '@/../test/factories/user';
 import { messageFactory } from '@/../test/factories/message';
 

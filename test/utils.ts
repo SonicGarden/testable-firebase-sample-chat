@@ -9,6 +9,7 @@ import { getConverter, WithId } from '@/lib/firebase';
 let testEnv: RulesTestEnvironment;
 
 export const initializeTestEnvironment = async () => {
+  process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
   testEnv = await _initializeTestEnvironment({
     projectId: 'fs-sample-open-chat-test',
     firestore: {
