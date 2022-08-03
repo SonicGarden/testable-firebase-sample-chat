@@ -8,10 +8,10 @@ import { getConverter, WithId } from '@/lib/firebase';
 
 let testEnv: RulesTestEnvironment;
 
-export const initializeTestEnvironment = async () => {
+export const initializeTestEnvironment = async (projectId: string) => {
   process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
   testEnv = await _initializeTestEnvironment({
-    projectId: 'fs-sample-open-chat-test',
+    projectId,
     firestore: {
       rules: readFileSync('firestore.rules', 'utf8'),
     },

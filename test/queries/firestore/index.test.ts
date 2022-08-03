@@ -3,7 +3,7 @@ import { messagesTest } from '@/../test/queries/firestore/collections/messages';
 
 describe('firestore.rules', () => {
   beforeAll(async () => {
-    await initializeTestEnvironment();
+    await initializeTestEnvironment('testable-firebase-sample-chat-rules-test');
   });
 
   afterAll(async () => {
