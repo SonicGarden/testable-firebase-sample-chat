@@ -1,7 +1,6 @@
 import { initializeTestEnvironment, getTestEnv } from '@/../test/utils';
-import { usersRules } from '@/../test/firestore/rules/users';
-import { messagesRules } from '@/../test/firestore/rules/messages';
-import { messagesQueries } from '@/../test/firestore/queries/messages';
+import { usersTest } from '@/../test/rules/firestore/collections/users';
+import { messagesTest } from '@/../test/rules/firestore/collections/messages';
 
 describe('firestore.rules', () => {
   beforeAll(async () => {
@@ -16,7 +15,6 @@ describe('firestore.rules', () => {
     await getTestEnv().clearFirestore();
   });
 
-  usersRules();
-  messagesRules();
-  messagesQueries();
+  usersTest();
+  messagesTest();
 });
