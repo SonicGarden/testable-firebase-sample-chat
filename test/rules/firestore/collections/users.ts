@@ -7,8 +7,8 @@ const user = userFactory.build({ id: 'user-id' });
 const other = userFactory.build({ id: 'other-id' });
 const users = [user, other];
 
-export const usersRules = () => {
-  describe('usersRules', () => {
+export const usersTest = () => {
+  describe('users', () => {
     let env: RulesTestEnvironment;
 
     beforeEach(async () => {
