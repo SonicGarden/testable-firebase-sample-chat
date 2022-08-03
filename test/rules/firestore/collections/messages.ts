@@ -11,8 +11,8 @@ const userMessage = messageFactory.build({ id: 'user-message-id', senderId: user
 const otherMessage = messageFactory.build({ id: 'other-message-id', senderId: other.id });
 const messages = [userMessage, otherMessage];
 
-export const messagesRules = () => {
-  describe('messagesRules', () => {
+export const messagesTest = () => {
+  describe('messages', () => {
     let env: RulesTestEnvironment;
 
     beforeEach(async () => {
