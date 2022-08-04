@@ -1,6 +1,7 @@
 import { initializeTestEnvironment, getTestEnv } from '@/../test/utils';
 import { usersTest } from '@/../test/rules/firestore/collections/users';
 import { messagesTest } from '@/../test/rules/firestore/collections/messages';
+import { userSecretsTest } from '@/../test/rules/firestore/collections/userSecrets';
 
 describe('firestore.queries', () => {
   beforeAll(async () => {
@@ -17,4 +18,5 @@ describe('firestore.queries', () => {
 
   usersTest();
   messagesTest();
+  userSecretsTest();
 });
