@@ -1,10 +1,12 @@
 import { ReactNode, createContext, useContext } from 'react';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { getMessaging, getToken } from 'firebase/messaging';
 import { useAuthState } from '@/hooks/useAuthState';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { LoginScreen } from '@/components/LoginScreen';
 import type { User } from '@/lib/firebase';
 import { getUser, addUser } from '@/lib/user';
+import { setUserSecret } from '@/lib/userSecret';
 
 type AuthContextValue = {
   currentUser: User | null;
@@ -27,8 +29,10 @@ export const useAuth = () => {
   const signInWithGoogle = async () => {
     try {
       const { user } = await signInWithPopup(getAuth(), provider);
-      const { isExist } = await getUser(user.uid);
-      if (!isExist) await addUser(user);
+      const fcmToken = await getToken(getMessaging(), { vapidKey: import.meta.env.VITE_FIREBASE_MESSAGING_VAPID_KEY });
+      const { isExist: isExistUser } = await getUser(user.uid);
+      if (!isExistUser) await addUser(user);
+      await setUserSecret(user.uid, { fcmToken });
     } catch (e) {
       console.error(e);
     }

@@ -14,7 +14,7 @@ export const getUserSecret = async (uid: string) => {
   return { isExist, userSecret };
 };
 
-export const addUserSecret = async ({ uid, fcmToken }: { uid: string; fcmToken: string }) => {
+export const setUserSecret = async (uid: string, { fcmToken }: { fcmToken: string }) => {
   const userSecret = { fcmToken, createdAt: serverTimestamp() };
-  await setDoc(doc(userSecretsRef, uid), userSecret);
+  await setDoc(doc(userSecretsRef, uid), userSecret, { merge: true });
 };
