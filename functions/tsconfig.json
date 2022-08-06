@@ -10,6 +10,8 @@
   },
   "compileOnSave": true,
   "include": [
-    "src"
-  ]
+    "src",
+    "test",
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
