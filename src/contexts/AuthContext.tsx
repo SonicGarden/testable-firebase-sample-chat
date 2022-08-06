@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext } from 'react';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, updateCurrentUser } from 'firebase/auth';
 import { getMessaging, getToken } from 'firebase/messaging';
 import { useAuthState } from '@/hooks/useAuthState';
 import { LoadingScreen } from '@/components/LoadingScreen';
@@ -35,6 +35,7 @@ export const useAuth = () => {
       await setUserSecret(user.uid, { fcmToken });
     } catch (e) {
       console.error(e);
+      await updateCurrentUser(getAuth(), null);
     }
   };
 

@@ -13,7 +13,7 @@ type UsersContextValue = {
 export const UsersContext = createContext<UsersContextValue>({ users: [], usersById: {}, loading: true });
 
 export const UsersProvider = ({ children }: { children: ReactNode }) => {
-  const [users, loading] = useCollectionData<User>(usersRef);
+  const [users, loading] = useCollectionData(usersRef);
   const usersById = useMemo(() => keyBy(users, 'id'), [users]);
 
   return <UsersContext.Provider value={{ users: users || [], usersById, loading }}>{children}</UsersContext.Provider>;
