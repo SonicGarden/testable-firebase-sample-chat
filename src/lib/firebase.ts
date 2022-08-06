@@ -10,6 +10,7 @@ import {
   serverTimestamp as _serverTimestamp,
 } from 'firebase/firestore';
 import type { User } from 'firebase/auth';
+import type { WithId } from '@/shared/types/firebase';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -21,8 +22,6 @@ const firebaseConfig = {
 };
 
 initializeApp(firebaseConfig);
-
-type WithId<T> = T & { id: string };
 
 const getConverter = <T>(): FirestoreDataConverter<WithId<T>> => ({
   toFirestore: (data: PartialWithFieldValue<WithId<T>>): DocumentData => {

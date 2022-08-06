@@ -1,6 +1,6 @@
 import { Factory } from 'fishery';
 import { Timestamp } from 'firebase/firestore';
-import { UserSecret } from '@/types/userSecret';
+import { UserSecret } from '@/shared/types/userSecret';
 
 export const userSecretFactory = Factory.define<UserSecret>(({ sequence }) => ({
   id: sequence.toString(),

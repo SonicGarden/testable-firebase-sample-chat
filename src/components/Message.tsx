@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import { useUsers } from '@/contexts/UsersContext';
 import { LoadingScreen } from './LoadingScreen';
-import { Message as MessageType } from '@/types/message';
+import { Message as MessageType } from '@/shared/types/message';
 import { useBlob } from '@/hooks/useBlob';
 
 export const Message = ({ message }: { message: MessageType }) => {
