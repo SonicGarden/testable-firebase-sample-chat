@@ -46,16 +46,24 @@ describe('onCreateMessage', async () => {
       { senderId: 'sender-id', content: 'テストメッセージ' },
       'messages/message-id'
     );
-    const notification = {
-      title: 'てすたろうさんからメッセージが届きました',
-      body: 'テストメッセージ',
-    };
 
     const wrappedOnCreateMessage = wrap(onCreateMessage);
     await wrappedOnCreateMessage(snapshot);
 
     expect(messagingSendMock).toBeCalledTimes(2);
-    expect(messagingSendMock).toHaveBeenNthCalledWith(1, { token: 'token-1', notification });
-    expect(messagingSendMock).toHaveBeenNthCalledWith(2, { token: 'token-2', notification });
+    expect(messagingSendMock).toHaveBeenNthCalledWith(1, {
+      token: 'token-1',
+      notification: {
+        title: 'てすたろうさんからメッセージが届きました',
+        body: 'テストメッセージ',
+      },
+    });
+    expect(messagingSendMock).toHaveBeenNthCalledWith(2, {
+      token: 'token-2',
+      notification: {
+        title: 'てすたろうさんからメッセージが届きました',
+        body: 'テストメッセージ',
+      },
+    });
   });
 });
