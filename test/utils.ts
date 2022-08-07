@@ -10,10 +10,14 @@ let testEnv: RulesTestEnvironment;
 
 export const initializeTestEnvironment = async (projectId: string) => {
   process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
+  process.env.FIREBASE_STORAGE_EMULATOR_HOST = 'localhost:9199';
   testEnv = await _initializeTestEnvironment({
     projectId,
     firestore: {
       rules: readFileSync('firestore.rules', 'utf8'),
+    },
+    storage: {
+      rules: readFileSync('storage.rules', 'utf8'),
     },
   });
 };
