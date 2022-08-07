@@ -39,5 +39,6 @@ export const useAuth = () => {
     }
   };
 
+  
   return { currentUser, signInWithGoogle, signOut };
 };
