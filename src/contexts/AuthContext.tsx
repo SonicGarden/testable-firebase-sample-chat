@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext } from 'react';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, updateCurrentUser } from 'firebase/auth';
 import { useAuthState } from '@/hooks/useAuthState';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { LoginScreen } from '@/components/LoginScreen';
@@ -31,6 +31,7 @@ export const useAuth = () => {
       if (!isExist) await addUser(user);
     } catch (e) {
       console.error(e);
+      await updateCurrentUser(getAuth(), null);
     }
   };
 
