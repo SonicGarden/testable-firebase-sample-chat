@@ -5,7 +5,7 @@ service cloud.firestore {
       return request.auth.uid != null;
     }
     function isOwn(uid) {
-      return request.auth.uid == uid;
+      return isLoggedIn() && request.auth.uid == uid;
     }
 
     match /users/{uid} {

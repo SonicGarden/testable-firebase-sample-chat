@@ -2,10 +2,10 @@ rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
     function isLoggedIn() {
-      return request.auth.uid != null;
+      return request.auth != null;
     }
     function isOwn(uid) {
-      return request.auth.uid == uid;
+      return isLoggedIn() && request.auth.uid == uid;
     }
 
     match /messages/{messageId}/{fileName} {
