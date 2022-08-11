@@ -10,8 +10,7 @@ service firebase.storage {
 
     match /messages/{messageId}/{fileName} {
       allow read: if isLoggedIn();
-      allow create: if isOwn(request.resource.metadata.ownerId);
-      allow update, delete: if isOwn(resource.metadata.ownerId);
+      allow write: if isOwn(request.resource.metadata.ownerId);
     }
   }
 }
