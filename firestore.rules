@@ -2,7 +2,7 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     function isLoggedIn() {
-      return request.auth.uid != null;
+      return request.auth != null;
     }
     function isOwn(uid) {
       return isLoggedIn() && request.auth.uid == uid;
