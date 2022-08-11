@@ -3,9 +3,9 @@ import { usersTest } from '@/../test/rules/firestore/collections/users';
 import { messagesTest } from '@/../test/rules/firestore/collections/messages';
 import { userSecretsTest } from '@/../test/rules/firestore/collections/userSecrets';
 
-describe('firestore.queries', () => {
+describe('firestore.rules', () => {
   beforeAll(async () => {
-    await initializeTestEnvironment('testable-firebase-sample-chat-queries-test');
+    await initializeTestEnvironment('testable-firebase-sample-chat-firestore-rules-test');
   });
 
   afterAll(async () => {
