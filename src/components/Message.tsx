@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import { useUsers } from '@/contexts/UsersContext';
 import { LoadingScreen } from './LoadingScreen';
 import { Message as MessageType } from '@/types/message';
+import nonameIcon from '@/images/noname.png';
 
 export const Message = ({ message }: { message: MessageType }) => {
   const { usersById, loading } = useUsers();
@@ -12,7 +13,7 @@ export const Message = ({ message }: { message: MessageType }) => {
   return (
     <div>
       <div>
-        <img src={sender?.photoUrl || '/noname.png'} />
+        <img src={sender?.photoUrl || nonameIcon} />
         <span>{sender?.name || '名無しさん'}</span>
         <span>{format(message.createdAt.toDate(), 'yyyy-MM-dd HH:mm')}</span>
       </div>
