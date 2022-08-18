@@ -9,7 +9,7 @@ import {
   PartialWithFieldValue,
   serverTimestamp as _serverTimestamp,
 } from 'firebase/firestore';
-import type { User } from 'firebase/auth';
+import { User, getAuth, signInWithPopup, GoogleAuthProvider, signOut as _signOut } from 'firebase/auth';
 import type { WithId } from '@/shared/types/firebase';
 
 const firebaseConfig = {
@@ -34,5 +34,12 @@ const getConverter = <T>(): FirestoreDataConverter<WithId<T>> => ({
 
 const serverTimestamp = _serverTimestamp as unknown as () => Timestamp;
 
+const signInGoogleWithPopup = async () => {
+  const provider = new GoogleAuthProvider();
+  return signInWithPopup(getAuth(), provider);
+};
+
+const signOut = async () => _signOut(getAuth());
+
 export type { User, WithId };
-export { Timestamp, getConverter, serverTimestamp };
+export { Timestamp, getConverter, serverTimestamp, signInGoogleWithPopup, signOut };
