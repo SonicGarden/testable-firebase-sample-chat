@@ -1,9 +1,8 @@
 import { ReactNode, createContext, useContext, useCallback } from 'react';
-import { getMessaging, getToken } from 'firebase/messaging';
 import { useAuthState } from '@/hooks/useAuthState';
 import { LoadingScreen } from '@/components/LoadingScreen';
 import { LoginScreen } from '@/components/LoginScreen';
-import { User, signInGoogleWithPopup, signOut } from '@/lib/firebase';
+import { User, signInGoogleWithPopup, signOut, getFcmToken } from '@/lib/firebase';
 import { getUser, addUser } from '@/lib/user';
 import { setUserSecret } from '@/lib/userSecret';
 
@@ -27,7 +26,7 @@ export const useAuth = () => {
   const signInWithGoogle = useCallback(async () => {
     try {
       const { user } = await signInGoogleWithPopup();
-      const fcmToken = await getToken(getMessaging(), { vapidKey: import.meta.env.VITE_FIREBASE_MESSAGING_VAPID_KEY });
+      const fcmToken = await getFcmToken();
       const { isExist } = await getUser(user.uid);
       if (!isExist) await addUser(user);
       await setUserSecret(user.uid, { fcmToken });
