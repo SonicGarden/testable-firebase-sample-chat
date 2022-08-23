@@ -9,7 +9,7 @@
     "deploy": "yarn build && firebase deploy --except functions",
     "deploy:rules": "firebase deploy --only firestore:rules,storage",
     "test": "vitest run",
-    "emulators:start": "firebase emulators:start --only firestore,storage",
+    "emulators:start": "firebase emulators:start --only hosting,auth,firestore,storage",
     "emulators:test": "firebase emulators:exec --only firestore,storage 'yarn test'"
   },
   "dependencies": {
@@ -33,9 +33,11 @@
     "@typescript-eslint/parser": "^5.30.6",
     "@vitejs/plugin-react": "^1.3.0",
     "cypress": "^10.6.0",
+    "cypress-firebase": "^2.2.2",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.30.1",
+    "firebase-admin": "^11.0.1",
     "fishery": "^2.2.2",
     "jsdom": "^20.0.0",
     "prettier": "^2.7.1",
