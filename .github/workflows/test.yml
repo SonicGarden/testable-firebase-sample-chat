@@ -27,7 +27,7 @@ jobs:
         run: yarn add firebase-tools
 
       - name: エミュレータの起動
-        run: yarn emulators:start:firestore &
+        run: yarn emulators:start &
 
       - name: エミュレータの起動待機...
         run: sleep 10
