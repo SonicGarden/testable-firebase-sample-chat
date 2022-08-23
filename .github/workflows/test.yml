@@ -43,4 +43,4 @@ jobs:
         uses: SonicGarden/firestore-rules-report-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          report-url: 'http://localhost:8080/emulator/v1/projects/testable-firebase-sample-chat-queries-test:ruleCoverage' 
+          report-url: 'http://localhost:8080/emulator/v1/projects/testable-firebase-sample-chat-firestore-rules-test:ruleCoverage' 
