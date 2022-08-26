@@ -7,7 +7,7 @@ export const MessageForm = () => {
   const [content, setContent] = useState<string>('');
   const imageInput = useRef<HTMLInputElement>(null);
 
-  const handleChangeConetnt = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeContent = (event: ChangeEvent<HTMLInputElement>) => {
     setContent(event.currentTarget.value);
   };
 
@@ -22,7 +22,7 @@ export const MessageForm = () => {
 
   return (
     <>
-      <input aria-label='content-input' type='text' value={content} onChange={handleChangeConetnt} />
+      <input aria-label='content-input' type='text' value={content} onChange={handleChangeContent} />
       <input aria-label='image-input' type='file' accept='image/*' ref={imageInput} />
       <button onClick={handleClick} disabled={!content}>
         送信
