@@ -7,10 +7,16 @@ service firebase.storage {
     function isOwn(uid) {
       return isLoggedIn() && request.auth.uid == uid;
     }
+    function isCreatedOwn() {
+      return resource == null && isOwn(request.resource.metadata.ownerId);
+    }
+    function isUpdatedOwn() {
+      return resource != null && isOwn(resource.metadata.ownerId);
+    }
 
     match /messages/{messageId}/{fileName} {
       allow read: if isLoggedIn();
-      allow write: if isOwn(request.resource.metadata.ownerId);
+      allow write: if isCreatedOwn() || isUpdatedOwn();
     }
   }
 }
