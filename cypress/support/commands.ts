@@ -40,5 +40,4 @@ Cypress.Commands.add('teardown', () => {
   cy.exec(`curl -v -X DELETE "http://localhost:8080/emulator/v1/projects/testable-firebase-sample-chat-test/databases/(default)/documents"`);
   cy.exec(`curl -v -X DELETE "http://localhost:9099/emulator/v1/projects/testable-firebase-sample-chat-test/accounts"`);
   cy.logout();
-  cy.reload();
 });

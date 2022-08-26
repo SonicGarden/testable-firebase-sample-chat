@@ -1,6 +1,6 @@
 import user from '../fixtures/user.json';
 
-describe('empty spec', () => {
+describe('画面が表示されること', () => {
   beforeEach(() => {
     cy.task('create:user', user);
     cy.login(user.uid);
