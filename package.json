@@ -5,10 +5,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:test": "yarn build --mode test",
     "preview": "vite preview",
     "deploy": "yarn build && firebase deploy --except functions",
     "deploy:rules": "firebase deploy --only firestore:rules,storage",
     "test": "vitest run",
+    "test:e2e": "yarn cypress run",
     "emulators:start": "firebase emulators:start --only hosting,auth,firestore,storage",
     "emulators:test": "firebase emulators:exec --only firestore,storage 'yarn test'"
   },
