@@ -4,7 +4,7 @@ import { LoadingScreen } from '@/components/LoadingScreen';
 import { Message } from '@/components/Message';
 
 export const Messages = () => {
-  const [messages, loading] = useCollectionData(messagesQuery);
+  const [messages, loading] = useCollectionData(messagesQuery());
 
   if (loading) return <LoadingScreen />;
 
