@@ -32,7 +32,7 @@ jobs:
       - name: エミュレータの起動待機...
         run: sleep 10
 
-      - name: security ruleテスト実行
+      - name: テスト実行
         run: yarn test
 
       - name: エミュレータのレポートの待機...
