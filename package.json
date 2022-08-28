@@ -8,6 +8,7 @@
     "preview": "vite preview",
     "deploy": "yarn build && firebase deploy --except functions",
     "test": "vitest run",
+    "test:ci": "vitest run firestore",
     "emulators:start:firestore": "firebase emulators:start --only firestore"
   },
   "dependencies": {
