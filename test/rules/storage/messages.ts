@@ -62,6 +62,11 @@ export const messagesTest = () => {
           const newStorageRef = ref(storage, 'messages/new-message-id/sample.png');
           await assertSucceeds(uploadBytes(newStorageRef, file, { customMetadata: { ownerId: user.id } }));
         });
+
+        it('変更できる', async () => {
+          const storageRef = ref(storage, userFilePath);
+          await assertSucceeds(uploadBytes(storageRef, file, { customMetadata: { ownerId: user.id } }));
+        });
       });
 
       describe('他ユーザのファイルの場合', () => {
@@ -77,6 +82,11 @@ export const messagesTest = () => {
         it('書き込みできない', async () => {
           const newStorageRef = ref(storage, 'messages/new-message-id/sample.png');
           await assertFails(uploadBytes(newStorageRef, file, { customMetadata: { ownerId: other.id } }));
+        });
+
+        it('変更できない', async () => {
+          const storageRef = ref(storage, otherFilePath);
+          await assertFails(uploadBytes(storageRef, file, { customMetadata: { ownerId: other.id } }));
         });
       });
     });
