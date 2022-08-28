@@ -13,7 +13,6 @@ service firebase.storage {
     function isUpdatedOwn() {
       return resource != null && isOwn(resource.metadata.ownerId);
     }
-
     match /messages/{messageId}/{fileName} {
       allow read: if isLoggedIn();
       allow write: if isCreatedOwn() || isUpdatedOwn();
