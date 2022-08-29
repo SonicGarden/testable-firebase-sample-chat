@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "deploy": "yarn build && firebase deploy --except functions",
     "deploy:rules": "firebase deploy --only firestore:rules,storage",
-    "test": "vitest run",
+    "test": "vitest run --dir test",
     "test:e2e": "yarn cypress run",
     "emulators:start": "firebase emulators:start --only hosting,auth,firestore,storage",
     "emulators:test": "firebase emulators:exec --only firestore,storage 'yarn test'"
