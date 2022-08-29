@@ -68,9 +68,9 @@ vi.mock('@/lib/firebase', async () => {
 describe('useAuth', async () => {
   const { useAuth } = await import('@/contexts/AuthContext');
 
-  afterEach(() => {
+  afterEach(async () => {
     vi.resetAllMocks();
-    cleanupHook();
+    await cleanupHook();
   });
 
   it('初めてのログインの場合、ユーザ情報が登録される', async () => {
