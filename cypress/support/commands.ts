@@ -25,19 +25,17 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
 
 Cypress.Commands.add('teardown', () => {
-  cy.exec(`curl -v -X DELETE "http://localhost:8080/emulator/v1/projects/testable-firebase-sample-chat-test/databases/(default)/documents"`);
+  cy.exec(
+    `curl -v -X DELETE "http://localhost:8080/emulator/v1/projects/testable-firebase-sample-chat-test/databases/(default)/documents"`
+  );
   cy.exec(`curl -v -X DELETE "http://localhost:9099/emulator/v1/projects/testable-firebase-sample-chat-test/accounts"`);
   cy.logout();
 });
+
+declare namespace Cypress {
+  interface Chainable {
+    teardown(): Cypress.Chainable<void>;
+  }
+}
