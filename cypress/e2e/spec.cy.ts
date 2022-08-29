@@ -1,4 +1,10 @@
-import user from '../fixtures/user.json';
+const user = {
+  uid: 'DUMMY-USER-ID',
+  email: 'dummy@example.com',
+  displayName: 'test-user',
+  password: 'password',
+  emailVerified: true,
+};
 
 describe('画面が表示されること', () => {
   beforeEach(() => {

@@ -18,7 +18,13 @@ export default defineConfig({
       process.env.FIREBASE_STORAGE_EMULATOR_HOST = 'localhost:9199';
 
       on('task', {
-        async 'create:user'(user: any) {
+        async 'create:user'(user: {
+          uid: string;
+          email: string;
+          displayName: string;
+          password: string;
+          emailVerified: boolean;
+        }) {
           await admin.auth().createUser(user);
           return admin.firestore().doc(`/users/${user.uid}`).set({ name: user.displayName, createdAt: new Date() });
         },
