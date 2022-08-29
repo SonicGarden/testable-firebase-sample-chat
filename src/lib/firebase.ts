@@ -8,8 +8,10 @@ import {
   FirestoreDataConverter,
   PartialWithFieldValue,
   serverTimestamp as _serverTimestamp,
+  getFirestore,
+  connectFirestoreEmulator,
 } from 'firebase/firestore';
-import { User, getAuth, signInWithPopup, GoogleAuthProvider, signOut as _signOut } from 'firebase/auth';
+import { User, getAuth, signInWithPopup, GoogleAuthProvider, signOut as _signOut, connectAuthEmulator } from 'firebase/auth';
 import { getMessaging, getToken } from 'firebase/messaging';
 import type { WithId } from '@/shared/types/firebase';
 
@@ -23,6 +25,12 @@ const firebaseConfig = {
 };
 
 initializeApp(firebaseConfig);
+
+if (import.meta.env.VITE_EMULATORS === 'true') {
+  console.info("USE EMULATORS...")
+  connectAuthEmulator(getAuth(), 'http://localhost:9099');
+  connectFirestoreEmulator(getFirestore(), 'localhost', 8080);
+}
 
 const getConverter = <T>(): FirestoreDataConverter<WithId<T>> => ({
   toFirestore: (data: PartialWithFieldValue<WithId<T>>): DocumentData => {
@@ -42,8 +50,7 @@ const signInGoogleWithPopup = async () => {
 
 const signOut = async () => _signOut(getAuth());
 
-const getFcmToken = async () =>
-  getToken(getMessaging(), { vapidKey: import.meta.env.VITE_FIREBASE_MESSAGING_VAPID_KEY });
+const getFcmToken = async () => getToken(getMessaging(), { vapidKey: import.meta.env.VITE_FIREBASE_MESSAGING_VAPID_KEY });
 
 export type { User, WithId };
 export { Timestamp, getConverter, serverTimestamp, signInGoogleWithPopup, signOut, getFcmToken };
