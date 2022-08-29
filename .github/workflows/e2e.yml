@@ -26,14 +26,5 @@ jobs:
       - name: firebase-toolsをインストール
         run: yarn add firebase-tools
 
-      - name: ビルド
-        run: yarn build:test
-
-      - name: エミュレータの起動
-        run: yarn emulators:start &
-
-      - name: エミュレータの起動待機...
-        run: sleep 10
-
       - name: テスト実行
-        run: yarn test:e2e
+        run: yarn emulators:e2e

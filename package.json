@@ -12,7 +12,8 @@
     "test": "vitest run --dir test",
     "test:e2e": "yarn cypress run",
     "emulators:start": "firebase emulators:start --only hosting,auth,firestore,storage",
-    "emulators:test": "firebase emulators:exec --only firestore,storage 'yarn test'"
+    "emulators:test": "firebase emulators:exec --only firestore,storage 'yarn test'",
+    "emulators:e2e": "yarn build:test && firebase emulators:exec --only hosting,auth,firestore,storage 'yarn test:e2e'"
   },
   "dependencies": {
     "date-fns": "^2.28.0",
