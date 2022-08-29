@@ -77,9 +77,9 @@ vi.mock('@/lib/firebase', async () => {
 describe('useAuth', async () => {
   const { useAuth } = await import('@/contexts/AuthContext');
 
-  afterEach(() => {
+  afterEach(async () => {
     vi.resetAllMocks();
-    cleanupHook();
+    await cleanupHook();
   });
 
   describe('初めてのログインの場合', () => {
