@@ -6,7 +6,7 @@ const user = {
   emailVerified: true,
 };
 
-describe('画面が表示されること', () => {
+describe('メッセージが投稿できる', () => {
   beforeEach(() => {
     cy.task('create:user', user);
     cy.login(user.uid);
@@ -17,5 +17,10 @@ describe('画面が表示されること', () => {
   it('passes', () => {
     cy.visit('/')
     cy.contains('Sample Chat App');
+    cy.get('input[type="text"]').type('はじめまして。てすたろうです。');
+    cy.get('button').contains('送信').click();
+    cy.get('#messages', { timeout: 5000 }).within(() => {
+      cy.contains('はじめまして。てすたろうです。', { timeout: 5000 }).should('be.visible');
+    })
   })
 })
