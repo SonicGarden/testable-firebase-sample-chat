@@ -28,6 +28,13 @@ export default defineConfig({
           await admin.auth().createUser(user);
           return admin.firestore().doc(`/users/${user.uid}`).set({ name: user.displayName, createdAt: new Date() });
         },
+
+        async 'create:message'(message: { content: string; imagePath: string | null; senderId: string }) {
+          return admin
+            .firestore()
+            .collection(`messages`)
+            .add({ ...message, createdAt: new Date() });
+        },
       });
     },
   },
