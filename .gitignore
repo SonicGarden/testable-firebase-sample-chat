@@ -29,3 +29,6 @@ dist-ssr
 .firebase
 
 /public/firebase-messaging-sw.js
+
+/cypress/videos
+/cypress/screenshots
