@@ -10,6 +10,7 @@ import {
   serverTimestamp as _serverTimestamp,
   getFirestore,
   connectFirestoreEmulator,
+  initializeFirestore,
 } from 'firebase/firestore';
 import { User, getAuth, signInWithPopup, GoogleAuthProvider, signOut as _signOut, connectAuthEmulator } from 'firebase/auth';
 import { getMessaging, getToken } from 'firebase/messaging';
@@ -24,11 +25,12 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
 if (import.meta.env.VITE_EMULATORS === 'true') {
-  console.info("USE EMULATORS...")
+  console.info('USE EMULATORS...');
   connectAuthEmulator(getAuth(), 'http://localhost:9099');
+  initializeFirestore(app, { experimentalForceLongPolling: true });
   connectFirestoreEmulator(getFirestore(), 'localhost', 8080);
 }
 
