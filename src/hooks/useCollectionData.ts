@@ -1,4 +1,8 @@
+import { useMemo } from 'react';
 import { Query } from 'firebase/firestore';
 import { useCollectionData as _useCollectionData } from 'react-firebase-hooks/firestore';
 
-export const useCollectionData = <T>(query: Query<T>) => _useCollectionData(query);
+export const useCollectionData = <T>(_query: Query<T>, deps: unknown[] = []) => {
+  const query = useMemo(() => _query, deps);
+  return _useCollectionData(query, { snapshotOptions: { serverTimestamps: 'estimate' } });
+};
