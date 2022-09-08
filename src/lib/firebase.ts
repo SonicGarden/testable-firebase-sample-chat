@@ -7,7 +7,9 @@ import {
   SnapshotOptions,
   FirestoreDataConverter,
   PartialWithFieldValue,
+  serverTimestamp as _serverTimestamp,
 } from 'firebase/firestore';
+import { User, getAuth, signInWithPopup, GoogleAuthProvider, signOut as _signOut } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -20,7 +22,7 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-export type WithId<T> = T & { id: string };
+type WithId<T> = T & { id: string };
 
 const getConverter = <T>(): FirestoreDataConverter<WithId<T>> => ({
   toFirestore: (data: PartialWithFieldValue<WithId<T>>): DocumentData => {
@@ -31,4 +33,14 @@ const getConverter = <T>(): FirestoreDataConverter<WithId<T>> => ({
   },
 });
 
-export { Timestamp, getConverter };
+const serverTimestamp = _serverTimestamp as unknown as () => Timestamp;
+
+const signInGoogleWithPopup = async () => {
+  const provider = new GoogleAuthProvider();
+  return signInWithPopup(getAuth(), provider);
+};
+
+const signOut = async () => _signOut(getAuth());
+
+export type { User, WithId };
+export { Timestamp, getConverter, serverTimestamp, signInGoogleWithPopup, signOut };
