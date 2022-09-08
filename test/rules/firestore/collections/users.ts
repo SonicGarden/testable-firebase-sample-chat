@@ -1,5 +1,5 @@
 import { assertSucceeds, assertFails, RulesTestEnvironment } from '@firebase/rules-unit-testing';
-import firebase from 'firebase/compat/app';
+import { FirebaseFirestore } from '@firebase/firestore-types';
 import { getTestEnv, setCollection } from '@/../test/utils';
 import { userFactory } from '@/../test/factories/user';
 
@@ -20,7 +20,7 @@ export const usersTest = () => {
     });
 
     describe('未認証の場合', () => {
-      let db: firebase.firestore.Firestore;
+      let db: FirebaseFirestore;
 
       beforeEach(() => {
         db = env.unauthenticatedContext().firestore();
@@ -61,7 +61,7 @@ export const usersTest = () => {
       });
 
       describe('自分のデータの場合', () => {
-        let db: firebase.firestore.Firestore;
+        let db: FirebaseFirestore;
 
         beforeEach(() => {
           db = env.authenticatedContext(user.id).firestore();
@@ -91,7 +91,7 @@ export const usersTest = () => {
       });
 
       describe('自分以外のデータの場合', () => {
-        let db: firebase.firestore.Firestore;
+        let db: FirebaseFirestore;
 
         beforeEach(() => {
           db = env.authenticatedContext(user.id).firestore();
