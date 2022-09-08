@@ -10,6 +10,11 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@antfu/utils@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@antfu/utils/-/utils-0.5.2.tgz#8c2d931ff927be0ebe740169874a3d4004ab414b"
+  integrity sha512-CQkeV+oJxUazwjlHD0/3ZD08QWKuGQkhnrKo3e6ly5pd48VUpXbb77q0xMU4+vc2CkJnDS02Eq/M9ugyX20XZA==
+
 "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.18.6":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.18.6.tgz#3b25d38c89600baa2dcc219edfa88a74eb2c427a"
@@ -1006,6 +1011,28 @@
     react-refresh "^0.13.0"
     resolve "^1.22.0"
 
+"@windicss/config@1.8.6":
+  version "1.8.6"
+  resolved "https://registry.yarnpkg.com/@windicss/config/-/config-1.8.6.tgz#783ce307f31ddeb921be534018495161808c99af"
+  integrity sha512-WVS41qUJtd44g2iWzTAE8tpgk8gD0yAr1RwwaWi7FAECKm3LVNMLOoToum9R/QKFE2n64EUVJpIvSUNby8rlhg==
+  dependencies:
+    debug "^4.3.4"
+    jiti "^1.14.0"
+    windicss "^3.5.6"
+
+"@windicss/plugin-utils@1.8.6":
+  version "1.8.6"
+  resolved "https://registry.yarnpkg.com/@windicss/plugin-utils/-/plugin-utils-1.8.6.tgz#b1250f9896f86f85b62182fce446c97ad21c1635"
+  integrity sha512-YY6EcUsgkosaQkIseFiIoHfU1H5boOAs/l74QWLI6ryNeHLMq2e04QVsFz+Rt+U8b8PRNxXPC8ADbxE05X7I7g==
+  dependencies:
+    "@antfu/utils" "^0.5.2"
+    "@windicss/config" "1.8.6"
+    debug "^4.3.4"
+    fast-glob "^3.2.11"
+    magic-string "^0.26.2"
+    micromatch "^4.0.5"
+    windicss "^3.5.6"
+
 abab@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.6.tgz#41b80f2c871d19686216b82309231cfd3cb3d291"
@@ -1751,7 +1778,7 @@ fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
   integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
 
-fast-glob@^3.2.9:
+fast-glob@^3.2.11, fast-glob@^3.2.9:
   version "3.2.11"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.11.tgz#a1172ad95ceb8a16e20caa5c5e56480e5129c1d9"
   integrity sha512-xrO3+1bxSo3ZVHAnqzyuewYT6aMFHRAd4Kcs92MAonjwQZLsK9d0SF1IyQ3k5PoirxTW0Oe/RqFgMQ6TcNE5Ew==
@@ -2235,6 +2262,11 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
+jiti@^1.14.0:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.14.0.tgz#5350fff532a4d891ca4bcd700c47c1f40e6ee326"
+  integrity sha512-4IwstlaKQc9vCTC+qUXLM1hajy2ImiL9KnLvVYiaHOtS/v3wRjhLlGl121AmgDgx/O43uKmxownJghS5XMya2A==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -2318,6 +2350,11 @@ jszip@^3.6.0:
     readable-stream "~2.3.6"
     setimmediate "^1.0.5"
 
+kolorist@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/kolorist/-/kolorist-1.5.1.tgz#c3d66dc4fabde4f6b7faa6efda84c00491f9e52b"
+  integrity sha512-lxpCM3HTvquGxKGzHeknB/sUjuVoUElLlfYnXZT73K8geR9jQbroGlSCFBax9/0mpGoD3kzcMLnOlGQPJJNyqQ==
+
 levn@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.4.1.tgz#ae4562c007473b932a6200d403268dd2fffc6ade"
@@ -2397,12 +2434,19 @@ lz-string@^1.4.4:
   resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.4.4.tgz#c0d8eaf36059f705796e1e344811cf4c498d3a26"
   integrity sha512-0ckx7ZHRPqb0oUm8zNr+90mtf9DQB60H1wMCjBtfi62Kl3a7JbHob6gA2bC+xRvZoOL+1hzUK8jeuEIQE8svEQ==
 
+magic-string@^0.26.2:
+  version "0.26.2"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.2.tgz#5331700e4158cd6befda738bb6b0c7b93c0d4432"
+  integrity sha512-NzzlXpclt5zAbmo6h6jNc8zl2gNRGHvmsZW4IvZhTC4W7k4OlLP+S5YLussa/r3ixNT66KOQfNORlXHSOy/X4A==
+  dependencies:
+    sourcemap-codec "^1.4.8"
+
 merge2@^1.3.0, merge2@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-micromatch@^4.0.4:
+micromatch@^4.0.4, micromatch@^4.0.5:
   version "4.0.5"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.5.tgz#bc8999a7cbbf77cdc89f132f6e467051b49090c6"
   integrity sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==
@@ -2926,6 +2970,11 @@ source-map@~0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
+sourcemap-codec@^1.4.8:
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz#ea804bd94857402e6992d05a38ef1ae35a9ab4c4"
+  integrity sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==
+
 string-width@^4.1.0, string-width@^4.2.0:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
@@ -3165,6 +3214,16 @@ v8-compile-cache@^2.0.3:
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz#2de19618c66dc247dcfb6f99338035d8245a2cee"
   integrity sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==
 
+vite-plugin-windicss@^1.8.6:
+  version "1.8.6"
+  resolved "https://registry.yarnpkg.com/vite-plugin-windicss/-/vite-plugin-windicss-1.8.6.tgz#732e1eb1b601fe304f29a7de63e713965977948a"
+  integrity sha512-D4G4qmumgklPiPrq/ZALqq8Mby6krskFVShbmb5c+0VCSsLUN96qyFRTwi81rNIHwFvlbpqflgh+BpUM/9VjQg==
+  dependencies:
+    "@windicss/plugin-utils" "1.8.6"
+    debug "^4.3.4"
+    kolorist "^1.5.1"
+    windicss "^3.5.6"
+
 vite-tsconfig-paths@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/vite-tsconfig-paths/-/vite-tsconfig-paths-3.5.0.tgz#bfdf93f8072eff04125112ea9602fd50ae8cdad9"
@@ -3290,6 +3349,11 @@ which@^2.0.1:
   integrity sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==
   dependencies:
     isexe "^2.0.0"
+
+windicss@^3.5.6:
+  version "3.5.6"
+  resolved "https://registry.yarnpkg.com/windicss/-/windicss-3.5.6.tgz#30a34da76894d952a96c9a1921f2e91e13932183"
+  integrity sha512-P1mzPEjgFMZLX0ZqfFht4fhV/FX8DTG7ERG1fBLiWvd34pTLVReS5CVsewKn9PApSgXnVfPWwvq+qUsRwpnwFA==
 
 word-wrap@^1.2.3, word-wrap@~1.2.3:
   version "1.2.3"
