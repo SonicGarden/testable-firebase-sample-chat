@@ -8,8 +8,17 @@ import {
   FirestoreDataConverter,
   PartialWithFieldValue,
   serverTimestamp as _serverTimestamp,
+  connectFirestoreEmulator,
+  initializeFirestore,
 } from 'firebase/firestore';
-import { User, getAuth, signInWithPopup, GoogleAuthProvider, signOut as _signOut } from 'firebase/auth';
+import {
+  User,
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut as _signOut,
+  connectAuthEmulator,
+} from 'firebase/auth';
 import { getMessaging, getToken } from 'firebase/messaging';
 import type { WithId } from '@/shared/types/firebase';
 
@@ -22,7 +31,14 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+if (import.meta.env.VITE_EMULATORS === 'true') {
+  console.info('USE EMULATORS...');
+  connectAuthEmulator(getAuth(), 'http://localhost:9099');
+  const firestore = initializeFirestore(app, { experimentalForceLongPolling: true });
+  connectFirestoreEmulator(firestore, 'localhost', 8080);
+}
 
 const getConverter = <T>(): FirestoreDataConverter<WithId<T>> => ({
   toFirestore: (data: PartialWithFieldValue<WithId<T>>): DocumentData => {
