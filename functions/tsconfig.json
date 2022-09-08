@@ -6,10 +6,14 @@
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2017",
+    "esModuleInterop": true,
+    "types": ["vitest/globals"]
   },
   "compileOnSave": true,
   "include": [
-    "src"
-  ]
+    "src",
+    "test",
+  ],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

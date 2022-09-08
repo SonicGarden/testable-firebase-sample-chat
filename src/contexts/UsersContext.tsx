@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useMemo } from 'react';
 import { keyBy } from 'lodash-es';
-import { User } from '@/types/user';
+import { User } from '@/shared/types/user';
 import { useCollectionData } from '@/hooks/useCollectionData';
 import { usersRef } from '@/lib/user';
 

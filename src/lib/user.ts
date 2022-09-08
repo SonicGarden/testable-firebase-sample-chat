@@ -1,6 +1,6 @@
 import { getFirestore, collection, doc, getDoc, setDoc } from 'firebase/firestore';
 import { getConverter, serverTimestamp } from '@/lib/firebase';
-import type { UserDocumentData } from '@/types/user';
+import type { UserDocumentData } from '@/shared/types/user';
 
 export const usersRef = () => collection(getFirestore(), 'users').withConverter(getConverter<UserDocumentData>());
 

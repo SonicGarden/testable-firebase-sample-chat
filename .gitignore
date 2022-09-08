@@ -27,3 +27,5 @@ dist-ssr
 .env.local
 
 .firebase
+
+/public/firebase-messaging-sw.js
