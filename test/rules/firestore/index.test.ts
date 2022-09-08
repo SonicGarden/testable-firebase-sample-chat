@@ -1,12 +1,10 @@
-import { initializeTestEnvironment, getTestEnv } from './utils';
+import { initializeTestEnvironment, getTestEnv } from '@/../test/utils';
 import { usersTest } from '@/../test/rules/firestore/collections/users';
 import { messagesTest } from '@/../test/rules/firestore/collections/messages';
 
-process.env.FIRESTORE_EMULATOR_HOST = 'localhost:8080';
-
-describe('firestore.rules', () => {
+describe('firestore.queries', () => {
   beforeAll(async () => {
-    await initializeTestEnvironment();
+    await initializeTestEnvironment('testable-firebase-sample-chat-queries-test');
   });
 
   afterAll(async () => {
