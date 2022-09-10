@@ -22,7 +22,7 @@ describe('AuthProvider', async () => {
   );
 
   afterEach(() => {
-    vi.resetAllMocks();
+    vi.clearAllMocks();
     cleanup();
   });
 
@@ -78,7 +78,7 @@ describe('useAuth', async () => {
   const { useAuth } = await import('@/contexts/AuthContext');
 
   afterEach(async () => {
-    vi.resetAllMocks();
+    vi.clearAllMocks();
     await cleanupHook();
   });
 

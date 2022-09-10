@@ -19,7 +19,7 @@ describe('Messages', async () => {
   const { Messages } = await import('@/components/Messages');
 
   afterEach(() => {
-    vi.resetAllMocks();
+    vi.clearAllMocks();
     cleanup();
   });
 

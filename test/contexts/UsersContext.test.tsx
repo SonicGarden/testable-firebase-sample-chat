@@ -12,7 +12,7 @@ describe('useUsers', () => {
   });
 
   afterEach(() => {
-    vi.resetAllMocks();
+    vi.clearAllMocks();
   });
 
   it('usersとusersById,loadingを返す', async () => {
