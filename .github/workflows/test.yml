@@ -1,0 +1,46 @@
+name: test
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.X]
+
+    steps:
+      - name: レポジトリのチェックアウト
+        uses: actions/checkout@v3
+
+      - name: Node.js ${{ matrix.node-version }} セットアップ
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+
+      - name: パッケージインストール
+        run: yarn install
+
+      - name: firebase-toolsをインストール
+        run: yarn add firebase-tools
+
+      - name: エミュレータの起動
+        run: yarn emulators:start &
+
+      - name: エミュレータの起動待機...
+        run: sleep 10
+
+      - name: テスト実行
+        run: yarn test
+
+      - name: エミュレータのレポートの待機...
+        run: sleep 10
+
+      - name: coverage request
+        id: coverageRequest
+        uses: SonicGarden/firestore-rules-report-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          report-url: 'http://localhost:8080/emulator/v1/projects/testable-firebase-sample-chat-firestore-rules-test:ruleCoverage' 

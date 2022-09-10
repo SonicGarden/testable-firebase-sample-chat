@@ -1,8 +1,26 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if false;
+    function isLoggedIn() {
+      return request.auth != null;
+    }
+    function isOwn(uid) {
+      return isLoggedIn() && request.auth.uid == uid;
+    }
+
+    match /users/{uid} {
+      allow read: if isLoggedIn();
+      allow write: if isOwn(uid);
+    }
+
+    match /userSecrets/{uid} {
+      allow get, write: if isOwn(uid);
+    }
+
+    match /messages/{messageId} {
+      allow read: if isLoggedIn();
+      allow create: if isOwn(request.resource.data.senderId);
+      allow update, delete: if isOwn(resource.data.senderId);
     }
   }
 }

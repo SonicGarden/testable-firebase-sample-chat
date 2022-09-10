@@ -1,0 +1,30 @@
+name: e2e
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.X]
+
+    steps:
+      - name: レポジトリのチェックアウト
+        uses: actions/checkout@v3
+
+      - name: Node.js ${{ matrix.node-version }} セットアップ
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+
+      - name: パッケージインストール
+        run: yarn install
+
+      - name: firebase-toolsをインストール
+        run: yarn add firebase-tools
+
+      - name: テスト実行
+        run: yarn emulators:e2e

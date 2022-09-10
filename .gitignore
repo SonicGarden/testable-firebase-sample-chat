@@ -27,3 +27,8 @@ dist-ssr
 .env.local
 
 .firebase
+
+/public/firebase-messaging-sw.js
+
+/cypress/videos
+/cypress/screenshots

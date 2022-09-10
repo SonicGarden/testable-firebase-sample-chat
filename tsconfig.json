@@ -19,8 +19,9 @@
     "paths": {
       "@/*": ["*"]
     },
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "noUncheckedIndexedAccess": true
   },
-  "include": ["src"],
+  "include": ["src", "test", "./vitest.setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
