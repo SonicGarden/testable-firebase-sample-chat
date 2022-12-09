@@ -40,7 +40,7 @@ if (import.meta.env.VITE_EMULATORS === 'true') {
   connectFirestoreEmulator(firestore, 'localhost', 8080);
 }
 
-const getConverter = <T>(): FirestoreDataConverter<WithId<T>> => ({
+const getConverter = <T extends DocumentData>(): FirestoreDataConverter<WithId<T>> => ({
   toFirestore: (data: PartialWithFieldValue<WithId<T>>): DocumentData => {
     return omit(data, ['id']);
   },
