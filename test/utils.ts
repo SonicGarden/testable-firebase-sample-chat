@@ -5,6 +5,7 @@ import {
 import { readFileSync } from 'fs';
 import firebase from 'firebase/compat/app';
 import { getConverter, WithId } from '@/lib/firebase';
+import { DocumentData } from 'firebase/firestore';
 
 let testEnv: RulesTestEnvironment;
 
@@ -24,5 +25,5 @@ export const initializeTestEnvironment = async (projectId: string) => {
 
 export const getTestEnv = () => testEnv;
 
-export const setCollection = <T>(ref: firebase.firestore.CollectionReference, instances: WithId<T>[]) =>
+export const setCollection = <T extends DocumentData>(ref: firebase.firestore.CollectionReference, instances: WithId<T>[]) =>
   Promise.all(instances.map((_) => ref.doc(_.id).set(getConverter<T>().toFirestore(_))));
